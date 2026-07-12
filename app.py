@@ -46,16 +46,16 @@ features = np.array([[
     self_employed,
     credit_history,
     property_area,
-    np.log(applicant_income),
-    np.log(loan_amount),
-    np.log(loan_amount_term),
-    np.log(total_income)
+    applicant_income_log=np.log(applicant_income),
+    loan_amount_log=np.log(loan_amount),
+    loan_amount_term_log=np.log(loan_amount_term),
+    total_income_log=np.log(total_income)
 ]])
 if st.button("Predict"):
     data = np.array([[gender, married, dependents, education,
                       self_employed, credit_history, property_area,
                       applicant_income_log, loan_amount_log,
-                      loan_term_log, total_income_log]])
+                      loan_amount_term_log, total_income_log]])
 
 
 
