@@ -1,6 +1,6 @@
 import streamlit as st
 import joblib
-model = joblib.load("loan_model_pkl")
+model = joblib.load(model3,"loan_model_pkl")
 
 # User Inputs
 gender = st.selectbox("Gender", ["Female", "Male"])
