@@ -50,7 +50,7 @@ features = np.array([[
 ]])
 
 
-prediction = model.predict(features)
+prediction = model3.predict(features)
 
 if prediction[0] == 1:
     st.success("🎉 Loan Approved")
