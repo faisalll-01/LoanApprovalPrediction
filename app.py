@@ -2,7 +2,7 @@ import streamlit as st
 import joblib
 import numpy as np
 
-# Load model and scaler
+# Load model 
 model = joblib.load("loan_model.pkl")
 
 st.title("Loan Approval Prediction System")
@@ -34,15 +34,17 @@ if st.button("Predict"):
     features = np.array([[
         gender,
         married,
-        education,
         dependents,
+        education,
         self_employed,
-        applicant_income,
-        coapplicant_income,
-        loan_amount,
-        loan_amount_term,
         credit_history,
-        property_area
+        property_area,
+        np.log(applicant_income),
+        np.log(loan_amount),
+        np.log(loan_amount_term),
+        np.log(total_income)
+        
+        
     ]])
 
     
