@@ -51,7 +51,7 @@ features = np.array([[
     credit_history,
     property_area,
     applicant_income_log,
-    loan_amount_log=np,
+    loan_amount_log,
     loan_amount_term_log,
     total_income_log=np.log(total_income)
 ]])
