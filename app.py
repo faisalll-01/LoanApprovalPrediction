@@ -42,7 +42,7 @@ if st.button("Predict"):
         np.log(applicant_income),
         np.log(loan_amount),
         np.log(loan_amount_term),
-        np.log(total_income)
+        
         
         
     ]])
