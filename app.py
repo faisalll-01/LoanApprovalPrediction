@@ -49,7 +49,7 @@ features = np.array([[
     np.log(total_income)
 ]])
 
-prediction = model.predict(features)
+
 prediction = model.predict(features)
 
     if prediction[0] == 1:
