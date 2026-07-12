@@ -53,7 +53,8 @@ features = np.array([[
     property_area,
     applicant_income_log,
     loan_amount_log,
-    loan_amount_term_log
+    loan_amount_term_log,
+    total_income_log
 
 
 ]])
@@ -61,7 +62,7 @@ if st.button("Predict"):
     data = np.array([[gender, married, dependents, education,
                       self_employed, credit_history, property_area,
                       applicant_income_log, loan_amount_log,
-                      loan_amount_term_log]])
+                      loan_amount_term_log, total_income_log]])
 
 
 
