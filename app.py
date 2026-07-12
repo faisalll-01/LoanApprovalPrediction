@@ -1,4 +1,6 @@
 import streamlit as st
+import joblib
+model = joblib.load("loan_model_pkl")
 
 # User Inputs
 gender = st.selectbox("Gender", ["Female", "Male"])
@@ -50,7 +52,7 @@ features = np.array([[
 ]])
 
 
-prediction = model3.predict(features)
+prediction = model.predict(features)
 
 if prediction[0] == 1:
     st.success("🎉 Loan Approved")
