@@ -1,6 +1,7 @@
 import streamlit as st
 import joblib
 model = joblib.load("loan_model.pkl")
+st.title("🏦 Loan Approval Prediction System")
 
 # User Inputs
 gender = st.selectbox("Gender", ["Female", "Male"])
@@ -50,6 +51,12 @@ features = np.array([[
     np.log(loan_amount_term),
     np.log(total_income)
 ]])
+if st.button("Predict"):
+    data = np.array([[gender, married, dependents, education,
+                      self_employed, credit_history, property_area,
+                      applicant_income_log, loan_amount_log,
+                      loan_term_log, total_income_log]])
+
 
 
 prediction = model.predict(features)
