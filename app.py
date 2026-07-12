@@ -10,7 +10,8 @@ model = joblib.load("loan_model.pkl")
 
 st.title("🏦 Loan Approval Prediction System")
 
-gender =  st.selectbox("Gender", [0, 1])
+gender =  st.selectbox("Gender", ["Male","Female"])
+gender = gender_encoder.transform([gender])[0]
 married = st.selectbox("Married", [0, 1])
 dependents = st.selectbox("Dependents", [0, 1, 2, 3])
 education = st.selectbox("Education", [0, 1])
