@@ -36,11 +36,11 @@ property_area = {
 }[property_area]
 import numpy as np
 
-  total_income = applicant_income + coapplicant_income
-  applicant_income_log=np.log(applicant_income)
-  loan_amount_log=np.log(loan_amount)
-  loan_amount_term_log=np.log(loan_amount_term)
-  total_income_log=np.log(total_income)
+   total_income = applicant_income + coapplicant_income
+   applicant_income_log=np.log(applicant_income)
+   loan_amount_log=np.log(loan_amount)
+   loan_amount_term_log=np.log(loan_amount_term)
+   total_income_log=np.log(total_income)
 
 features = np.array([[
     gender,
