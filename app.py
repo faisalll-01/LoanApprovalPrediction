@@ -1,47 +1,57 @@
-import sys
-import numpy as np
-import joblib
 import streamlit as st
+import joblib
+import numpy as np
 
-st.write("Python:", sys.executable)
-
-# Load model
+# Load model and scaler
 model = joblib.load("loan_model.pkl")
+scaler = joblib.load("scaler.pkl")   # Agar scaler use kiya hai
 
-st.title("🏦 Loan Approval Prediction System")
+st.title("Loan Approval Prediction System")
 
-gender =  st.selectbox("Gender", ["Male","Female"])
-gender = gender_encoder.transform([gender])[0]
-married = st.selectbox("Married", [1, 0])
-dependents = st.selectbox("Dependents", [0, 1, 2, 3])
-education = st.selectbox("Education", [0, 1])
-self_employed = st.selectbox("Self Employed", [0, 1])
+# User Inputs
+gender = st.selectbox("Gender", ["Female", "Male"])
+married = st.selectbox("Married", ["No", "Yes"])
+education = st.selectbox("Education", ["Graduate", "Not Graduate"])
+dependents = st.selectbox("Dependents", ["0", "1", "2", "3+"])
+self_employed = st.selectbox("Self Employed", ["No", "Yes"])
+applicant_income = st.number_input("Applicant Income", min_value=0)
+coapplicant_income = st.number_input("Coapplicant Income", min_value=0)
+loan_amount = st.number_input("Loan Amount", min_value=1)
+loan_amount_term = st.number_input("Loan Amount Term", min_value=1)
 credit_history = st.selectbox("Credit History", [0, 1])
-property_area = st.selectbox("Property Area", [0, 1, 2])
+property_area = st.selectbox("Property Area", ["Rural", "Semiurban", "Urban"])
 
-applicant_income_log = st.number_input("Applicant Income (log)")
-loan_amount_log = st.number_input("Loan Amount (log)")
-loan_term_log = st.number_input("Loan Amount Term (log)")
-total_income_log = st.number_input("Total Income (log)")
+# Encoding
+gender = 0 if gender == "Female" else 1
+married = 0 if married == "No" else 1
+education = 0 if education == "Graduate" else 1
+dependents = {"0": 0, "1": 1, "2": 2, "3+": 3}[dependents]
+self_employed = 0 if self_employed == "No" else 1
+property_area = {"Rural": 0, "Semiurban": 1, "Urban": 2}[property_area]
 
+# Prediction
 if st.button("Predict"):
-    data = np.array([[
+
+    features = np.array([[
         gender,
         married,
-        dependents,
         education,
+        dependents,
         self_employed,
+        applicant_income,
+        coapplicant_income,
+        loan_amount,
+        loan_amount_term,
         credit_history,
-        property_area,
-        applicant_income_log,
-        loan_amount_log,
-        loan_term_log,
-        total_income_log
+        property_area
     ]])
 
-    prediction = model.predict(data)
+    # Scaling (agar training me scaler use kiya tha)
+    features = scaler.transform(features)
+
+    prediction = model.predict(features)
 
     if prediction[0] == 1:
         st.success("✅ Loan Approved")
     else:
-        st.error("❌ Loan Rejected")
+        st.error("❌ Loan Not Approved")
