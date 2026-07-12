@@ -37,6 +37,10 @@ property_area = {
 import numpy as np
 
 total_income = applicant_income + coapplicant_income
+    applicant_income_log=np.log(applicant_income)
+    loan_amount_log=np.log(loan_amount)
+    loan_amount_term_log=np.log(loan_amount_term)
+    total_income_log=np.log(total_income)
 
 features = np.array([[
     gender,
@@ -46,9 +50,9 @@ features = np.array([[
     self_employed,
     credit_history,
     property_area,
-    applicant_income_log=np.log(applicant_income)
-    loan_amount_log=np.log(loan_amount)
-    loan_amount_term_log=np.log(loan_amount_term)
+    applicant_income_log,
+    loan_amount_log=np,
+    loan_amount_term_log,
     total_income_log=np.log(total_income)
 ]])
 if st.button("Predict"):
