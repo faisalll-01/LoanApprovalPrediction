@@ -4,7 +4,6 @@ import numpy as np
 
 # Load model and scaler
 model = joblib.load("loan_model.pkl")
-scaler = joblib.load("scaler.pkl")   # Agar scaler use kiya hai
 
 st.title("Loan Approval Prediction System")
 
@@ -46,8 +45,8 @@ if st.button("Predict"):
         property_area
     ]])
 
-    # Scaling (agar training me scaler use kiya tha)
-    features = scaler.transform(features)
+    
+
 
     prediction = model.predict(features)
 
