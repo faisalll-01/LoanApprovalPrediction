@@ -1,6 +1,6 @@
 import streamlit as st
 import joblib
-model = joblib.load("loan_approval_model.pkl")
+model = joblib.load("loan_prediction_model.pkl")
 st.title("🏦 Loan Approval Prediction System")
 
 # User Inputs
